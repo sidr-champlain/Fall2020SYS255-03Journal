@@ -1,0 +1,30 @@
+Week 1 Lab 
+Goal: 
+Become familiar with your lab environment
+Configure your own firewall that separates your student local area network from the other students in the class (SYS255-WAN)
+Configure a single Windows 10 Workstation to communicate with the Internet
+
+Key Terms and Notes:
+PfSense - a firewall which provides routing services between a Local Area Network and Wide Area Network in your VSphere environment.
+
+Tracert Command Example: tracert www.champlain.edu
+This will list all the maximum hops. 
+
+The lab mentioned a default gateway a couple times.  What is that and why is it important?
+
+Default Gateway is is a term for a hardware node or point that will provide outgoing access to data packets to a destination in some other discrete network(Techopedia)
+
+Errors during the lab:
+
+Adding an Admin Group. I wasn't allowed to add the admin group.
+Login Credentials were messed up. 
+VM took a long time to set up.
+
+Most interesting part:
+
+Being able to successfuly ping one machine from the other. It took a long time to get this working, and when I solved the issue it felt rewarding.
+
+
+
+
+
