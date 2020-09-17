@@ -1,0 +1,44 @@
+Lab02 - Server 2019, ADDS and DNS
+
+ Goal:
+ Any sizable environment needs a Domain Name Server (DNS) so that you don't need to manually associate IP addresses with hostnames.  
+ In Windows environments, you will often find that the DNS Server and a directory lookup service called active directory are combined on one platform.  
+ We will configure such a system on a Windows Server 2019 virtual machine that provides domain name and active directory services for the 10.0.5.0/24 network.
+ 
+
+I first configured the Server. To do that I first went to the virtual machine hardware settings. 
+Then I changed the network to Lan instead of WAN. This allowed me to set the: 
+
+IP Address
+Netmask 
+Gateway
+DNS 
+
+Then I changed my computer name. After this I rebooted to insure that the settings were saved.
+
+I ran a simple network command to confirm the network connectin was solid.
+
+ Commands We used:
+ - Whoami
+ - Hostname 
+ - ping 
+ - nslookup
+ 
+ Then I moved onto the ADDS - Active Directory Domain Services
+ That was easier to install. I didn't run into an issues. 
+ 
+ After installation, I needed to configure the server to be the primary domain controller for my domain (yourname.local).  
+ There was a link to Promote this server to a domain controller.  
+ Make absolutely sure you have set the hostname before moving forward with promoting this system.
+ 
+ Once I finshed that, I got a DNS Error because we gave our environment a .local top level domain(TLD), an error is indicated during installation.  
+ Valid top level domains are domains like .com, .gov, .edu, .net.  
+ Because this is an internal domain, I will left it as is.  
+ The naming of local domains is the subject of many debates among systems administrators.
+ 
+ 
+ 
+ I fixed this and then installed DNS Record and Reverse DNS.
+ Then I was able to successfully add my user to Active Directory
+ 
+ 
