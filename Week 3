@@ -1,0 +1,44 @@
+For week 3 I completed a Linux Lab
+
+Goal:
+
+It is very rare that you will find an enterprise that is either fully Windows, Mac or Linux. 
+You will likely find a heterogeneous environment where many different operating systems are leveraged to accomplish the organization's mission.  
+In this lab today you will configure an operating system called CentOS.  This particular operating system is open source and has been pre-built for you.  
+Your job will be to complete the configuration steps to make it useful and manageable in our growing enterprise.
+
+Step 1:
+
+I had to setup the Centos Server. I had to fix the network settings to fit my other machines.
+Once I did that, I had to create a new privileged user.
+
+To do that you have to do the following (In root user):
+
+adduser username
+passwd username
+gpasswd -a username wheel
+
+Extra Tip: Managing Users with Sudo Privileges using the following command:
+sudo lid -g wheel
+The output will show the users on the network and server.
+
+I ran a few network tests to confirm I connected everything correctly.
+
+Then from my windows machine I used ssh to remote into my linux machine.
+
+Side Note: Systems Administrators will typically manage linux systems remotely via SSH (Secure Shell).  
+An application called PuTTY is popular for this purpose and can be optionally installed.  
+Fortunately, Windows 10 now ships with an SSH client.
+
+After I connected through ssh, I wanted to get used to some of the commands. A few include:
+- pwd
+- cd /home
+- ls
+- ls -1
+- mkdr
+- yum install
+- sudo install
+- groups
+- history | head -n 10
+- cat .bash_history
+Link to more commands: HTTP://LINOXIDE.COM/GUIDE/LINUX-COMMAND-SHELF.HTML 
