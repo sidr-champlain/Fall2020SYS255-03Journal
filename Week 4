@@ -1,0 +1,55 @@
+Completed during week 4:
+Lab04 DHCP
+SSH Secure
+File Permission
+
+Lab04 Goal:
+Have you ever had to manually configure an IP address when connecting to a wifi or cellular network?  
+Of course not! Behind the scenes, DHCP has been taking care of you. 
+This lab will illustrate how DHCP works and why it is a core service in any network with clients.
+
+The first step was to SSH into our lnux box. Use either PuTTY or Powershell SSH from AD01 to access your CentOS server from now on!  
+This allows you to copy/paste from your Windows system (you can login into Canvas from here).  
+You can open up multiple windows should you wish.  Note, Powershell SSH is somewhat new, and you can experience keyboard issues. 
+
+Once in, I became the system user for a brief period of time using the sudo -i command. 
+Then I opened the dhcp configuration file using the  nano text editor (nano is easier)
+Command: sudo nano /etc/dhcp/dhpcd.conf
+That allowed me to edit the file and configure the network.
+subnet "enter" netmask "enter" {
+  option routers
+  option subnet-mask "enter"
+  option domain-name "enter"
+  option doname-name0servers "donaim name of server"
+  range "enter" "enter"
+ }
+ 
+ Then I checked to see if it was active: 
+ systemctl status dhcpd
+ 
+ Now here is the part I ran into errors. The vi was picking up another file titled "dhcpd.conf"
+ So I tried troublshooting, but nothing worked. I unistalled DHCP( sudo yum remove dhcp) and then reinstalled it ( sudo yum install dhcp)
+ Then it was fixed. 
+ 
+ Pro tip for systemctl: Whenever you change or create a service configuration file, you generally need to start or restart the service involved.  
+ This fact trips up many linux administrators.  The systemd control program systemctl is how you start, stop and status services. 
+ Also, Forgetting to enable a service to start on boot will cause the service to fail when the system is rebooted.  Remember this if a service worked fine one day and does not after a reboot. (systemctl enable dhcpd)
+ 
+ Once status was green, I had to configure the firewall. The default configuration on CentOS is to enable the firewall and allow both ICMP and SSH requests in.  
+ The DHCP server will not work until I enable the firewall. I will be using firewalld and the firewall-cmd utility to make this happen.
+ Finally I re-configure the networking on WKS01 to use dynamic addressing rather than static addresses.
+ 
+ For the SSH Securing: I disabled SSH root user access to dhcp01. 
+ Pro Tip: Allowing remote access to a known user account like Administrator, root or admin for OpnSense is a terrible idea.  
+ It allows an attacker to conduct an exhaustive attack using dictionaries of passwords against these known user accounts.  A security best practice is to disable Remote access as root.
+ I didn't run into any issues here. Took about 5 minutes to complete compared to the 3 hour DHCP Lab. 
+ I proved SSH was disabled for root by conducting a test via PuTTY.
+ 
+  For Linux File Permissions The task was to understand the basic linux user, group and file permissions is necessary to build, deploy and secure linux systems.  
+  I watched a video and completed the task.
+  
+  Overall a very busy week and glad I found the issue for DHCP lab. Hopfully the next lab I don't run into errors.
+ 
+ 
+ 
+
