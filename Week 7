@@ -1,0 +1,33 @@
+Lab: Server Core / Remote Administrator Tools
+
+Objectives:
+Setup a Windows 2019 Server Core machine to act as a file server.  Use the command line to perform local tasks (change the IP, change the server name).  
+Connect to the new server FS01 from AD02 using RSAT and add File Services.
+
+Quick Tip About Time: It is very important that all your Windows systems are on the same timezone and have accurate time with respect to one another.  
+Windows authentication is sensitive to differences in time. Your assigned VMs have this set, but this is not always the case.  
+Redmond, WA (home of Microsoft) is in the Pacific Standard Time-zone.
+
+Our first task was to set up FS01-Workstation:
+sconfig command: Allows for IP address setting (IP, Subnet Mask, Default Gateway, DNS Server) and the Server name (FS01-yourname).
+
+Our next step was to use Use RSAT to manage Active Directory. Remote Administration in an enterprise environment would likely not be done on the domain controller, 
+but rather a Domain Joined workstation or server with Remote Server Administration Tools installed.  
+We are doing so to avoid the installation of another server and server administration tools.
+
+Within the File setup we had to create:
+
+- a new Global security group (Sales-Users) in the Groups OU. 
+- two users (Bob and Alice) as standard domain users, in the new SYS255\Users OU
+- Add Alice to the Sales-Users group
+
+Ran a few commands to check to make sure that Alice was the only one that could access Sales File.
+
+Our final task was to create a shared drive so for both alice and bob. To that you can use Group Policy Management in Server Manger Tab
+
+Step 1: Click on your domain name and Create a new GPO (give it a name) and link it to a group of users.
+Step 2:  Edit the New GPO by hitting edit and go to User Configuration -> Preferences -> Windows Settings -> Drive Maps.
+Step 3: Right-click Drive Maps, then select New and then click the Mapped Drive option
+Step 4: Then you will see a bunch of options for the mapped drive. 
+Step 5: Once finished, restart machine or use  gpupdate /force. Then run the gpresults and the shared drive will show up.
+
