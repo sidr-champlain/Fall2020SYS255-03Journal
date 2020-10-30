@@ -1,0 +1,40 @@
+For Week 8 I had to complete an Apache Lab and a DHCP Help Desk Ticket
+
+Apache Lab Objectives: 
+
+Manual configuration of ip address
+Install httpd
+Configure httpd
+Join web01 to the domain
+
+Security Tip: CentOS and other Redhat based Linux servers ship with SSH turned on.  
+This combined with a known "root" user who is able to attempt login remotely presents a security flaw that must be addressed by the systems administrator 
+before the system is accessible over the internet.  
+The typical solution involves explicitly preventing root from logging in via the sshd_config file.
+
+For the installing apache you need to add ports 80/tcp & 443/tcp or the HTTP and HTTPS defined services to your firewall.
+To remove the welcome page you need to open /var/www/html/ 
+
+Commands to install:
+
+sudo yum update -y
+sudo yum install httpd -y
+sudo firewall-cmd --permanent --add-port=80/tcp
+sudo firewall-cmd --permanent --add-port=443/tcp
+sudo firewall-cmd --reload
+sudo systemctl start httpd
+sudo systemctl enable httpd
+
+After successful installation we used php.
+
+Then we added your machine to the realm list 
+
+realmd: The ability to easily join a Linux system to a Windows Active Directory Domain is a huge win for centralized account management and security.  
+We are going to join our web01 server to yourname.local domain.
+
+sudo yum install realmd samba samba-common oddjob oddjob-mkhomedir sssd
+
+Join the domain: realm join --user=your-domain-admin-username@yourdomain.local yourdomain.local
+realm list
+
+To install DHCP for windows I followed the steps provided by: https://blog.eldernode.com/install-and-configure-dhcp-server/
